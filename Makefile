@@ -1,4 +1,4 @@
-CC = gcc -std=c++17 -g -Wall -Werror -Wextra
+CC = gcc -std=c++17 -g 
 OS = $(shell uname)
 
 MODEL = Model.cc parser.cc

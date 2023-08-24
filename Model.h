@@ -1,6 +1,8 @@
 #ifndef CALCMODEL_H
 #define CALCMODEL_H
 
+#include <math.h>
+
 #include <iostream>
 #include <stack>
 #include <string>
@@ -41,9 +43,9 @@ class CalcModel {
   // };
 
   enum class Operation {
-    plus = '+',          // 0
-    minus = '-',         // 1
-    mult = '*',          // 2
+    plus = '+',          // 43
+    minus = '-',         // 45
+    mult = '*',          // 42
     div = '/',           // 3
     mod = '%',           // 4
     deg = '^',           // 5
@@ -58,10 +60,11 @@ class CalcModel {
     atan = 'i',          // 14
     log = 'g',           // 15
     ln = 'n',            // 16
-    leftBracket = '(',   // 17
-    rightBracket = ')',  // 18
+    leftBracket = '(',   // 40
+    rightBracket = ')',  // 41
 
     nothing = '\0'
+    // end
   };
 
   enum class TypeSym { number, constant, exponential, operation };
@@ -110,6 +113,12 @@ class CalcModel {
 
   void polshCalculate(Operation current, string::iterator& it);
   int findPriority(Operation op);
+  void stackUnarOperation(Operation current);
+  void stackDoubleOperation(Operation current);
+  double unarOperation(double numb, Operation current);
+  double doubleOperation(double lastNumb, double preLastNumb,
+                         Operation current);
+  double s21_fmod(double x, double y);
 };
 
 #endif  // CALCMODEL_H

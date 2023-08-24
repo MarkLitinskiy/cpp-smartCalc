@@ -106,7 +106,7 @@ CalcModel::Operation CalcModel::parserMod() {
 }
 
 CalcModel::Operation CalcModel::parserDeg() {
-  return (Operation::div);
+  return (Operation::deg);
   // it += 1;
 }
 
@@ -116,14 +116,15 @@ CalcModel::Operation CalcModel::parserSinSqrt(string::iterator& it) {
       (expression_str.substr(distance(expression_str.begin(), it), 3) == "sin");
   bool isSqrt = (expression_str.substr(distance(expression_str.begin(), it),
                                        4) == "sqrt");
-
+  Operation result = Operation::nothing;
   if (isNotEnd && isSin) {
-    return (Operation::sin);
+    result = (Operation::sin);
     it += 2;
   } else if (isNotEnd && isSqrt) {
-    return (Operation::sqrt);
+    result = (Operation::sqrt);
     it += 3;
   }
+  return result;
 }
 
 CalcModel::Operation CalcModel::parserCos(string::iterator& it) {
@@ -131,10 +132,12 @@ CalcModel::Operation CalcModel::parserCos(string::iterator& it) {
   bool isCos =
       (expression_str.substr(distance(expression_str.begin(), it), 3) == "cos");
 
+  Operation result = Operation::nothing;
   if (isNotEnd && isCos) {
-    return (Operation::cos);
+    result = (Operation::cos);
     it += 2;
   }
+  return result;
 }
 
 CalcModel::Operation CalcModel::parserTan(string::iterator& it) {
@@ -142,31 +145,35 @@ CalcModel::Operation CalcModel::parserTan(string::iterator& it) {
   bool isTan =
       (expression_str.substr(distance(expression_str.begin(), it), 3) == "tan");
 
+  Operation result = Operation::nothing;
   if (isNotEnd && isTan) {
-    return (Operation::tan);
+    result = (Operation::tan);
     it += 2;
   }
+  return result;
 }
 
 CalcModel::Operation CalcModel::parserAsinAcosAtan(string::iterator& it) {
   bool isNotEnd = (it != expression_str.end());
   bool isAsin = (expression_str.substr(distance(expression_str.begin(), it),
-                                       4) == "Asin");
+                                       4) == "asin");
   bool isAcos = (expression_str.substr(distance(expression_str.begin(), it),
-                                       4) == "Acos");
+                                       4) == "acos");
   bool isAtan = (expression_str.substr(distance(expression_str.begin(), it),
-                                       4) == "Atan");
+                                       4) == "atan");
 
+  Operation result = Operation::nothing;
   if (isNotEnd && isAsin) {
-    return (Operation::asin);
+    result = (Operation::asin);
     it += 3;
   } else if (isNotEnd && isAcos) {
-    return (Operation::acos);
+    result = (Operation::acos);
     it += 3;
   } else if (isNotEnd && isAtan) {
-    return (Operation::atan);
+    result = (Operation::atan);
     it += 3;
   }
+  return result;
 }
 
 CalcModel::Operation CalcModel::parserLogLn(string::iterator& it) {
@@ -176,13 +183,15 @@ CalcModel::Operation CalcModel::parserLogLn(string::iterator& it) {
   bool isLn =
       (expression_str.substr(distance(expression_str.begin(), it), 2) == "ln");
 
+  Operation result = Operation::nothing;
   if (isNotEnd && isLog) {
-    return (Operation::log);
+    result = (Operation::log);
     it += 2;
   } else if (isNotEnd && isLn) {
-    return (Operation::ln);
+    result = (Operation::ln);
     it += 1;
   }
+  return result;
 }
 
 CalcModel::Operation CalcModel::parserBrackets(string::iterator& it) {
@@ -191,11 +200,13 @@ CalcModel::Operation CalcModel::parserBrackets(string::iterator& it) {
   bool isRightBracket =
       (expression_str.substr(distance(expression_str.begin(), it), 1) == ")");
 
+  Operation result = Operation::nothing;
   if (isLeftBracket) {
-    return (Operation::leftBracket);
+    result = (Operation::leftBracket);
     // it += 1;
   } else if (isRightBracket) {
-    return (Operation::rightBracket);
+    result = (Operation::rightBracket);
     // it += 1;
   }
+  return result;
 }
