@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CreditCalc</class>
+ <widget class="QDialog" name="CreditCalc">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>482</width>
+    <height>449</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>482</width>
+    <height>449</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>482</width>
+    <height>449</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Credit Calculation</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background: 
+qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #FFCDC9, stop:1 #F5B7CA);
+</string>
+  </property>
+  <widget class="QPushButton" name="pushButton_result">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>180</y>
+     <width>100</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+  font-size: 15px;
+  padding: 1px 2px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  background-color: rgb(100, 70, 201);
+  color: #ffffff;
+}
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #dadbde, stop: 1 #f6f7fa);
+}</string>
+   </property>
+   <property name="text">
+    <string>Посчитаем!</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBox_sumCredit">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>30</y>
+     <width>111</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="maximum">
+    <number>999999999</number>
+   </property>
+   <property name="singleStep">
+    <number>1000</number>
+   </property>
+   <property name="value">
+    <number>100000</number>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget_monthlyPayment">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>30</y>
+     <width>181</width>
+     <height>411</height>
+    </rect>
+   </property>
+   <property name="dragDropOverwriteMode">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>30</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="text">
+    <string>Общая сумма кредита</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>151</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="text">
+    <string>Срок сдачи (в месяцах)</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBox_monthTerm">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>60</y>
+     <width>42</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="maximum">
+    <number>125</number>
+   </property>
+   <property name="value">
+    <number>12</number>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="doubleSpinBox_interestRate">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>90</y>
+     <width>62</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="singleStep">
+    <double>0.100000000000000</double>
+   </property>
+   <property name="value">
+    <double>5.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>90</y>
+     <width>121</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="text">
+    <string>Процентная ставка</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButton_annuitent">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>120</y>
+     <width>111</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="text">
+    <string>Аннуитентный</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButton_different">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>150</y>
+     <width>171</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="text">
+    <string>Дифференцированный</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>130</y>
+     <width>31</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="text">
+    <string>Тип</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>240</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="text">
+    <string>Результаты:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>270</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="text">
+    <string>Переплата по кредиту:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>300</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="text">
+    <string>Общая выплата:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>10</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="text">
+    <string>Ежемесячный платёж:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_overpayment">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>270</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_totalPay">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>300</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(100, 70, 201);
+font-family: 'Arial', sans-serif;
+font-weight: bold;
+background: transparent;</string>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
