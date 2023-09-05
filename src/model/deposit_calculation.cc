@@ -20,7 +20,7 @@ namespace s21 {
 /// @param sumPercent сумма начисленных процентов в конце срока вклада
 /// @param sumNalog сумма налога в конце работы вклада
 /// @return сумма на вкладе к концу срока
-double CalcModel::depositCalculation(double sumDeposit, int monthTerm,
+double CalcModel::DepositCalculation(double sumDeposit, int monthTerm,
                                      double interestRate, double nalogRate,
                                      int period, int capital, int refillCount,
                                      int refill, int withdrawalCount,

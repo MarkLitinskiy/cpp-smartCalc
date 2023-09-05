@@ -12,16 +12,16 @@ CreditCalc::CreditCalc(QWidget *parent, CalcController *originalController)
 CreditCalc::~CreditCalc() { delete ui; }
 
 void CreditCalc::on_pushButton_result_clicked() {
-  resetInputData();
+  ResetInputData();
   if (ui->radioButton_annuitent->isChecked()) {  // определение типа
-    annuitentCalculation();
+    AnnuitentCalculation();
   }
   if (ui->radioButton_different->isChecked()) {
-    differentCalculation();
+    DifferentCalculation();
   }
 }
 
-void CreditCalc::resetInputData() {  // для обновления значений всех
+void CreditCalc::ResetInputData() {  // для обновления значений всех
                                      // переменных
   sumCredit = ui->spinBox_sumCredit->text().toDouble();
   monthTerm = ui->spinBox_monthTerm->text().toInt();
@@ -31,7 +31,7 @@ void CreditCalc::resetInputData() {  // для обновления значен
   statePay = 0;
 }
 
-void CreditCalc::annuitentCalculation() {
+void CreditCalc::AnnuitentCalculation() {
   ui->tableWidget_monthlyPayment->setRowCount(
       monthTerm);  // задаём параметры таблицы
   ui->tableWidget_monthlyPayment->setColumnCount(1);
@@ -39,7 +39,7 @@ void CreditCalc::annuitentCalculation() {
                                                             << "Сумма выплаты");
   for (int i = 0; i < monthTerm; i++) {  // расчёт ежемесячных выплат
     QTableWidgetItem *tbl = new QTableWidgetItem(QString::number(
-        controller->creditCalculation(true, sumCredit, monthTerm, statePay,
+        controller->CreditCalculation(true, sumCredit, monthTerm, statePay,
                                       interestRate, overpayment, totalPay),
         'f', 3));
     ui->tableWidget_monthlyPayment->setItem(0, i, tbl);
@@ -48,7 +48,7 @@ void CreditCalc::annuitentCalculation() {
   ui->lineEdit_totalPay->setText(QString::number(totalPay, 'f', 3));
 }
 
-void CreditCalc::differentCalculation() {
+void CreditCalc::DifferentCalculation() {
   statePay = monthTerm - 1;
   ui->tableWidget_monthlyPayment->setRowCount(
       monthTerm);  // задаём параметры таблицы
@@ -57,7 +57,7 @@ void CreditCalc::differentCalculation() {
                                                             << "Сумма выплаты");
   for (int i = monthTerm - 1; i >= 0; i--) {  // расчёт ежемесячных выплат
     QTableWidgetItem *tbl = new QTableWidgetItem(QString::number(
-        controller->creditCalculation(false, sumCredit, monthTerm, statePay,
+        controller->CreditCalculation(false, sumCredit, monthTerm, statePay,
                                       interestRate, overpayment, totalPay),
         'f', 3));
     ui->tableWidget_monthlyPayment->setItem(0, i, tbl);

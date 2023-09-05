@@ -10,24 +10,24 @@ CalcModel::CalcModel(string str) { expression_str = str; }
 
 string CalcModel::calculate(string X) {
   double result = 0;
-  insertX(X);
+  InsertX(X);
   auto it = expressionToCalculate.begin();
   for (; it != expressionToCalculate.end(); ++it) {
-    TypeSym currentSym = whichTypeSym(*it);
-    if (currentSym == TypeSym::number) {
-      stackOfNumbers.push(parserNumber(it));
-    } else if (currentSym == TypeSym::operation) {
-      polshCalculate(parserOperator(it), it);
-    } else if (currentSym == TypeSym::exponential) {
-      calculateExponentialNumber(it);
-    } else if (currentSym == TypeSym::constant) {
+    TypeSym currentSym = WhichTypeSym(*it);
+    if (currentSym == TypeSym::kNumber) {
+      stackOfNumbers.push(ParserNumber(it));
+    } else if (currentSym == TypeSym::kOperation) {
+      PolshCalculate(ParserOperator(it), it);
+    } else if (currentSym == TypeSym::kExponential) {
+      CalculateExponentialNumber(it);
+    } else if (currentSym == TypeSym::kConstant) {
       stackOfNumbers.push(PI);
       ++it;
     }
   }
   while (!stackOfSym.empty()) {  // Если строка закончилась, а в стеке
                                  // операторов ещё есть значения
-    polshCalculate(stackOfSym.top(), it);
+    PolshCalculate(stackOfSym.top(), it);
   }
 
   result = stackOfNumbers.top();
@@ -35,10 +35,10 @@ string CalcModel::calculate(string X) {
     stackOfNumbers.pop();
   }
 
-  return reformatStr(to_string(result));
+  return ReformatStr(to_string(result));
 }
 
-string CalcModel::reformatStr(string str) {
+string CalcModel::ReformatStr(string str) {
   if (str[str.size() - 1] == '0') {
     for (size_t i = str.size() - 1; str[i] == '0'; i--) str.erase(i, 1);
   }
@@ -48,7 +48,7 @@ string CalcModel::reformatStr(string str) {
   return str;
 }
 
-void CalcModel::insertX(string X) {
+void CalcModel::InsertX(string X) {
   expressionToCalculate = expression_str;
   for (int i = 0; i != (int)expressionToCalculate.size(); ++i) {
     if (expressionToCalculate[i] == 'X') {
@@ -62,17 +62,17 @@ void CalcModel::insertX(string X) {
   }
 }
 
-void CalcModel::calculateExponentialNumber(string::iterator& it) {
+void CalcModel::CalculateExponentialNumber(string::iterator& it) {
   double mantiss = 0, count = 0, result = 0;
   ++it;
   if (*it == '-') {
     ++it;
-    stackOfNumbers.push(-1 * parserNumber(it));
+    stackOfNumbers.push(-1 * ParserNumber(it));
   } else if (*it == '+') {
     ++it;
-    stackOfNumbers.push(parserNumber(it));
+    stackOfNumbers.push(ParserNumber(it));
   } else {
-    stackOfNumbers.push(parserNumber(it));
+    stackOfNumbers.push(ParserNumber(it));
   }
   count = stackOfNumbers.top();
   stackOfNumbers.pop();
@@ -82,25 +82,25 @@ void CalcModel::calculateExponentialNumber(string::iterator& it) {
   stackOfNumbers.push(result);
 }
 
-CalcModel::TypeSym CalcModel::whichTypeSym(char sym) const {
+CalcModel::TypeSym CalcModel::WhichTypeSym(char sym) const {
   if (sym >= 48 && sym <= 57) {
-    return TypeSym::number;
+    return TypeSym::kNumber;
   } else if (sym == 'p') {
-    return TypeSym::constant;
+    return TypeSym::kConstant;
   } else if (sym == 'E') {
-    return TypeSym::exponential;
+    return TypeSym::kExponential;
   } else if (sym == 'X') {
-    return TypeSym::variable;
+    return TypeSym::kVariable;
   } else {
-    return TypeSym::operation;
+    return TypeSym::kOperation;
   }
 }
 
-void CalcModel::graphCalculation(string xValue, double xBegin, double xEnd,
+void CalcModel::GraphCalculation(string xValue, double xBegin, double xEnd,
                                  double step, vector<double>& x,
                                  vector<double>& y) {
   double Y = 0;
-  if (validationExpression(xValue, true)) {
+  if (ValidationExpression(xValue, true)) {
     for (double X = xBegin; X <= xEnd; X += step) {
       if (X < 0.1 && X > -0.1) {
         X = 0;

@@ -2,7 +2,7 @@
 
 namespace s21 {
 
-bool CalcModel::validationExpression(string X, bool isGraf) {
+bool CalcModel::ValidationExpression(string X, bool isGraf) {
   expressionToCalculate = expression_str;
   symbol_table.add_variable("X", x);
   symbol_table.add_constants();
@@ -10,14 +10,14 @@ bool CalcModel::validationExpression(string X, bool isGraf) {
   if (!parser.compile(expression_str, expression)) {
     expression_str = parser.error().c_str();
     return false;
-  } else if (!myValidator(X, isGraf)) {
+  } else if (!MyValidator(X, isGraf)) {
     return false;
   }
   return true;
 }
 
-bool CalcModel::myValidator(string X, bool isGraf) {
-  vector<Operation> operations{Operation::nothing};
+bool CalcModel::MyValidator(string X, bool isGraf) {
+  vector<Operation> operations{Operation::kNothing};
   for (auto it = expressionToCalculate.begin();
        it < expressionToCalculate.end(); ++it) {
     if (*it == '/' && *(it + 1) == '/') {

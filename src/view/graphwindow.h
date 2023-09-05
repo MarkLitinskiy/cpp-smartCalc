@@ -32,9 +32,8 @@ class graphWindow : public QDialog {
   double xBegin = 0, xEnd = 0, step = 0, X = 0,
          Y = 0;  // область отображения X, h - шаг между двумя точками, X -
                  // заполнение вектора
-  int N = 0;     // кол-во точек
-  void reloadSize();
-  void printGraph();
+  void ReloadSize();
+  void PrintGraph();
   QString expression = "";
   vector<double> x = {0}, y = {0};
   QString xValue = 0;

@@ -22,9 +22,9 @@ class DepositCalc : public QDialog {
  private:
   Ui::DepositCalc *ui;
   CalcController *controller;  // - контроллер
-
   double depositCalc();
-  void resetInputData();
+
+  void ResetInputData();
   double sumDeposit = 0;
   int monthTerm = 0;
   double interestRate = 0;

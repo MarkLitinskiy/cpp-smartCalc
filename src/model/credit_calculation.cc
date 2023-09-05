@@ -9,7 +9,7 @@ namespace s21 {
 /// @param overpayment Переплата по кредиту
 /// @param totalPay Общая выплата
 /// @return Ежемесячный платёж
-double CalcModel::creditAnnuitentCalculation(double sumCredit, int monthTerm,
+double CalcModel::CreditAnnuitentCalculation(double sumCredit, int monthTerm,
                                              double interestRate,
                                              double &overpayment,
                                              double &totalPay) noexcept {
@@ -37,7 +37,7 @@ double CalcModel::creditAnnuitentCalculation(double sumCredit, int monthTerm,
 /// @param overpayment Переплата по кредиту
 /// @param totalPay Общая выплата
 /// @return Ежемесячный платёж по текущему месяцу
-double CalcModel::creditDifferentCalculation(double sumCredit, int monthTerm,
+double CalcModel::CreditDifferentCalculation(double sumCredit, int monthTerm,
                                              int &statePay, double interestRate,
                                              double &overpayment,
                                              double &totalPay) noexcept {

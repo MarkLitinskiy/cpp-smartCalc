@@ -27,11 +27,11 @@ class CreditCalc : public QDialog {
  private:
   Ui::CreditCalc *ui;
   CalcController *controller;  // - контроллер
-  void resetInputData();
-  void annuitentCalculation();
-  void differentCalculation();
-  double creditAnnuitentCalculation();
-  double creditDifferentCalculation();
+  void ResetInputData();
+  void AnnuitentCalculation();
+  void DifferentCalculation();
+  double CreditAnnuitentCalculation();
+  double CreditDifferentCalculation();
   double sumCredit = 0;
   int monthTerm = 0;
   double interestRate = 0;

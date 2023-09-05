@@ -17,15 +17,15 @@ graphWindow::graphWindow(QWidget *parent, QString str,
       Qt::Dialog |
       Qt::MSWindowsFixedSizeDialogHint);  // для ограничения расширения окна
   expression = str;
-  reloadSize();
+  ReloadSize();
   QString toStr = QString::number(xBegin, 'g', 7);
-  printGraph();
+  PrintGraph();
 }
 
 graphWindow::~graphWindow() { delete ui; }
 
-void graphWindow::printGraph() {
-  controller->graphCalculate(expression.toStdString(), xBegin, xEnd, step, x, y,
+void graphWindow::PrintGraph() {
+  controller->GraphCalculate(expression.toStdString(), xBegin, xEnd, step, x, y,
                              xValue.toStdString());
 
   QVector<double> qX(x.begin(), x.end());
@@ -36,12 +36,11 @@ void graphWindow::printGraph() {
 }
 
 void graphWindow::on_pushButton_2_clicked() {
-  reloadSize();
-  // QString toStr = QString::number(xBegin, 'g', 7);
-  printGraph();
+  ReloadSize();
+  PrintGraph();
 }
 
-void graphWindow::reloadSize() {
+void graphWindow::ReloadSize() {
   step = ui->doubleSpinBox_step->value();
   xBegin = ui->doubleSpinBox_Xmin->value();
   xEnd = ui->doubleSpinBox_Xmax->value() + step;
@@ -52,7 +51,6 @@ void graphWindow::reloadSize() {
                               ui->doubleSpinBox_Ymax->value() + 5);
   ui->widget->xAxis->setLabel("x");
   ui->widget->yAxis->setLabel("y");
-  N = (xEnd - xBegin) / step + 2;
 }
 
 void graphWindow::on_pushButton_clicked() { close(); }

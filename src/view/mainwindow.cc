@@ -11,6 +11,7 @@ MainWindow::MainWindow(CalcController *c, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), controller(c) {
   ui->setupUi(this);
   QApplication::setWindowIcon(QIcon(":/icon/icon.ico"));  // иконка приложения
+
   QPixmap pix(":/image2/img2.jpg");
   int w = ui->image->width();
   int h = ui->image->height();
@@ -83,9 +84,6 @@ QString MainWindow::getResultFromController(QString expression, QString X) {
 }
 
 void MainWindow::on_pushButton_Equal_clicked() {
-  //  if (ui->lineEdit_X->text() == "") {
-  //    ui->lineEdit_X->setText("0");
-  //  }
   ui->lineEdit_Expression->setText(getResultFromController(
       ui->lineEdit_Expression->text(), ui->lineEdit_X->text()));
 }

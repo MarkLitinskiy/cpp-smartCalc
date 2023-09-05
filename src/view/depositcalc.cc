@@ -16,13 +16,13 @@ DepositCalc::DepositCalc(QWidget *parent, CalcController *originalController)
 DepositCalc::~DepositCalc() { delete ui; }
 
 void DepositCalc::on_pushButton_clicked() {
-  resetInputData();
+  ResetInputData();
   if (ui->checkBox_capital->isChecked())  // капитализация
     capital = 1;
   else
     capital = 0;
   ui->lineEdit_sumDepositEnd->setText(
-      QString::number(controller->depositCalculation(
+      QString::number(controller->DepositCalculation(
           sumDeposit, monthTerm, interestRate, nalogRate, period, capital,
           refillCount, refill, withdrawalCount, withdrawal, sumPercent,
           sumNalog)));
@@ -30,7 +30,7 @@ void DepositCalc::on_pushButton_clicked() {
   ui->lineEdit_sumNalog->setText(QString::number(sumNalog));
 }
 
-void DepositCalc::resetInputData() {  // для обновления значений всех
+void DepositCalc::ResetInputData() {  // для обновления значений всех
                                       // переменных
   sumDeposit = ui->spinBox_sumDeposit->text().toDouble();
   monthTerm = ui->spinBox_monthTerm->value();
